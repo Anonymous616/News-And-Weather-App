@@ -3,7 +3,6 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:http/http.dart" as http;
 import "dart:convert";
 import 'package:weatherApp/main.dart';
-import 'package:geolocator/geolocator.dart';
 
 class Weather extends StatefulWidget {
   @override

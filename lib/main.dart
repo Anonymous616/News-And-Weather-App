@@ -1,19 +1,21 @@
 import "package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'weather/weather.dart';
-import 'package:weatherApp/news/News.dart';
+import 'package:weatherApp/news/views/homepage.dart';
 
 Color backColor = Colors.white;
 Color foreColor = Colors.grey[900];
 Color textColor = Colors.black;
 
-void main() => runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Weather App",
-        home: Home(),
-      ),
-    );
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Weather App",
+      home: Home(),
+    ),
+  );
+}
 
 class Home extends StatefulWidget {
   @override
@@ -24,11 +26,12 @@ class _HomeState extends State<Home> {
   var now = new DateTime.now();
 
   List<Widget> _widgets;
-
+  List<String> screenTitles;
   @override
   void initState() {
     super.initState();
-    _widgets = [Weather(), News()];
+    _widgets = [Weather(), HomePage()];
+    screenTitles = ["Weather", "News"];
     // this.themePicker();
   }
 
@@ -61,9 +64,11 @@ class _HomeState extends State<Home> {
   // }
 
   int index = 0;
+  String currentScreen = "Weather";
   tapped(int tappedIndex) {
     setState(() {
       index = tappedIndex;
+      currentScreen = screenTitles[index];
     });
   }
 
@@ -71,6 +76,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          currentScreen,
+          style: TextStyle(color: textColor),
+        ),
         backgroundColor: backColor,
         elevation: 0.0,
       ),
